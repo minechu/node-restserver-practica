@@ -1,5 +1,7 @@
 // Archivo de configuracion inicial
 const config = require('./config');
+const {conectar} = require('./conexion-mongoDB');
+conectar();
 
 // Modulos externos
 const express = require('express');
@@ -12,26 +14,9 @@ app.use(bodyParser.urlencoded({extended : false}));
 // parse aplication json
 app.use(bodyParser.json())
 
-app.get('/usuario', function (req, res) {
-  res.json('get Usuario')
-})
+// agregando las rutas
+app.use(require('./rutas'));
 
-app.post('/usuario', function (req, res) {
-
-    let body = req.body;
-
-    res.json({
-        persona : body
-    })
-  })
-
-app.put('/usuario', function (req, res) {
-    res.json('put Usuario')
-})
-
-app.delete('/usuario', function (req, res) {
-    res.json('delete usuario')
-  })
  
 app.listen(process.env.PORT, () => {
     console.log("Escuchando en el puerto " + process.env.PORT)
