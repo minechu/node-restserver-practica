@@ -1,5 +1,7 @@
 // Archivo de configuracion inicial
 const config = require('./config');
+
+// Conexión mongoose
 const {conectar} = require('./conexion-mongoDB');
 conectar();
 
